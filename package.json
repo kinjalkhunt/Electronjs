@@ -1,0 +1,19 @@
+{
+  "name": "DeskTopApp",
+  "version": "1.0.0",
+  "description": "",
+  "main": "main.js",
+  "scripts": {
+    "start": "electron .",
+    "build": "electron-packager . DeskTopApp --platform=win32 --arch=x64 --out=dist"
+  },
+  "keywords": [],
+  "author": "Kinjal",
+  "license": "ISC",
+  "devDependencies": {
+    "electron": "^36.5.0"
+  },
+  "dependencies": {
+    "path": "^0.12.7"
+  }
+}
