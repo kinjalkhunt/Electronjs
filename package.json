@@ -2,7 +2,7 @@
   "name": "DeskTopApp",
   "version": "1.0.0",
   "description": "",
-  "main": "main.js",
+  "main": "src/main/main.js",
   "scripts": {
     "start": "electron .",
     "build": "electron-packager . DeskTopApp --platform=win32 --arch=x64 --out=dist"

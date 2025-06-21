@@ -15,7 +15,7 @@ function createWindow() {
     frame: false, // Custom window controls
   });
 
-  win.loadFile('main.html');
+  win.loadFile(path.join(__dirname, '../renderer/main.html'));
 
   ipcMain.on('window-minimize', () => win.minimize());
   ipcMain.on('window-maximize', () => {
