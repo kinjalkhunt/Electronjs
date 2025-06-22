@@ -1,31 +1,66 @@
-const { app, BrowserWindow, ipcMain } = require('electron');
 const path = require('path');
+
+try {
+  require('electron-reload')(__dirname, {
+    electron: require(path.join(__dirname, '..', '..', 'node_modules', 'electron'))
+  });
+} catch (e) {
+  // ignore errors
+}
+
+const { app, BrowserWindow, ipcMain } = require('electron');
 
 function createWindow() {
   const win = new BrowserWindow({
-    width: 1200,
-    height: 1500,
+    width: 400,
+    height: 200,
     minWidth: 400,
     minHeight: 300,
+    // title: 'Login',
+    autoHideMenuBar: true,
     webPreferences: {
       nodeIntegration: true,
       contextIsolation: false,
     },
     resizable: true,
-    frame: false, // Custom window controls
+    frame: false,
   });
 
-  win.loadFile(path.join(__dirname, '../renderer/main.html'));
+  win.loadFile(path.join(__dirname, '../renderer/login.html'));
 
-  ipcMain.on('window-minimize', () => win.minimize());
-  ipcMain.on('window-maximize', () => {
-    if (win.isMaximized()) {
-      win.unmaximize();
-    } else {
+  win.webContents.openDevTools();
+
+  ipcMain.on('close-app', () => {
+    win.close();
+  });
+
+  ipcMain.on('maximize-window', () => {
+    if (win) {
       win.maximize();
     }
   });
-  ipcMain.on('window-close', () => win.close());
+
+  ipcMain.on('fullscreen-window', () => {
+    if (win) {
+      win.setFullScreen(true);
+    }
+  });
+
+  ipcMain.on('minimize-window', () => {
+    if (win) {
+      win.minimize();
+    }
+  });
+
+  ipcMain.on('toggle-maximize-window', () => {
+    if (win) {
+      if (win.isMaximized()) {
+        win.unmaximize();
+      } else {
+        win.maximize();
+      }
+    }
+  });
 }
 
 app.whenReady().then(createWindow);

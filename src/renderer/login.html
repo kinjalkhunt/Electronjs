@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <!-- <title>Login</title> -->
+  <link rel="stylesheet" href="css/style.css">
+</head>
+<body>
+  <div class="title-bar">
+    <div class="title-bar-left">
+      <img src="../renderer/assets/LOGO.jpg" alt="Logo" class="logo" />
+      <span class="login-title">Login</span>
+    </div>
+    <div class="title-bar-right">
+      <button id="close-btn" class="title-bar-button">✕</button>
+    </div>
+  </div>
+  <div class="">
+    <div class="login-form">
+      <form id="loginForm">
+        <label for="username">Username</label>
+        <input type="text" id="username">
+        <label for="password">Password</label>
+        <input type="password" id="password">
+        <button id="login-btn" type="submit">Login</button>
+      </form>
+      <div id="error" style="display:none;color:red;"></div>
+    </div>
+  </div>
+  <script src="js/login.js"></script>
+</body>
+</html> 
