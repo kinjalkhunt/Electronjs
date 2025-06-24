@@ -137,7 +137,7 @@ button:hover {
   gap: 30px;
 }
 .menu-bar li {
-  display: inline;
+  display: flex;
   position: relative;
 }
 .menu-bar a {
@@ -163,18 +163,69 @@ button:hover {
   border-radius: 0 0 6px 6px;
   padding: 0;
 }
+.dropdown-content.show {
+  display: block;
+}
 .dropdown-content li {
   display: block;
 }
 .dropdown-content a {
   display: block;
-  padding: 10px 16px;
+  padding: 10px;
   color: #fff;
   border-radius: 0;
+  text-decoration: none;
 }
 .dropdown-content a:hover {
   background: rgba(255,255,255,0.10);
 }
-.dropdown-content.show {
-  display: block;
+
+.fabric-entry-form {
+  background: white;
+  padding: 32px 32px 24px 32px;
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  width: 350px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.fabric-entry-form label {
+  margin-bottom: 4px;
+  font-weight: 500;
+}
+
+.fabric-entry-form input[type='text'],
+.fabric-entry-form input[type='number'],
+.fabric-entry-form input[type='date'] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  box-sizing: border-box;
+  margin-bottom: 12px;
+  font-size: 15px;
+}
+
+.fabric-entry-form input:focus {
+  outline: none;
+  border: 1.5px solid #7fd1d5;
+}
+
+.fabric-entry-form button[type='submit'] {
+  width: 100%;
+  padding: 10px;
+  background-color: #197278;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  cursor: pointer;
+  margin-top: 10px;
+  transition: background 0.2s;
+}
+
+.fabric-entry-form button[type='submit']:hover {
+  background-color: #14505a;
 }

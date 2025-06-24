@@ -1,43 +1,6 @@
 const { ipcRenderer } = require('electron');
 
-function renderMainScreen() {
-  document.body.innerHTML = `
-    <div class="title-bar">
-      <div class="title-bar-left">
-        <img src="../renderer/assets/LOGO.jpg" alt="Logo" class="logo" />
-        <span class="login-title">Main Screen</span>
-      </div>
-      <div class="title-bar-right">
-        <button id="minimize-btn" class="title-bar-button">🗕</button>
-        <button id="maximize-btn" class="title-bar-button">🗖</button>
-        <button id="close-btn" class="title-bar-button">✕</button>
-      </div>
-    </div>
-    <nav class="menu-bar">
-      <ul>
-      
-        <li class="dropdown">
-          <a href="#" id="menu-master">Master</a>
-          <ul class="dropdown-content" id="dropdown-master">
-            <li><a href="#" id="master-customer">Customer</a></li>
-            <li><a href="#" id="master-product">Product</a></li>
-            <li><a href="#" id="master-supplier">Supplier</a></li>
-          </ul>
-        </li>
-        <li><a href="#" id="menu-profile">Transaction</a></li>
-        <li><a href="#" id="menu-settings">View</a></li>
-        <li><a href="#" id="menu-logout">Logout</a></li>
-      </ul>
-    </nav>
-    <div class="container">
-      <div class="main-content">
-        <h1>Welcome, Swissfort!</h1>
-        <p>You have successfully logged in.</p>
-        <p>when i click menu item tha time open the drpdown and alt+that first letter then also open the dropdown</p>
-      </div>
-    </div>
-  `;
-
+document.addEventListener('DOMContentLoaded', () => {
   // Attach event listeners
   document.getElementById('minimize-btn').onclick = () => ipcRenderer.send('minimize-window');
   document.getElementById('maximize-btn').onclick = () => ipcRenderer.send('toggle-maximize-window');
@@ -62,8 +25,31 @@ function renderMainScreen() {
     }
   });
 
+  // Dropdown toggle for Transaction
+  const transactionMenu = document.getElementById('menu-transaction');
+  const transactionDropdown = document.getElementById('dropdown-transaction');
+  transactionMenu.addEventListener('click', (e) => {
+    e.preventDefault();
+    e.stopPropagation();
+    transactionDropdown.classList.toggle('show');
+  });
+  transactionDropdown.addEventListener('click', (e) => {
+    e.stopPropagation();
+  });
+  document.addEventListener('click', (e) => {
+    if (!transactionMenu.contains(e.target) && !transactionDropdown.contains(e.target)) {
+      transactionDropdown.classList.remove('show');
+    }
+  });
+
+  // Open Fabric Entry page
+  document.getElementById('transaction-fabric-entry').addEventListener('click', (e) => {
+    e.preventDefault();
+    window.location.href = 'FabricEntry.html';
+  });
+
   // Optionally, send fullscreen on load
   ipcRenderer.send('fullscreen-window');
-}
+  win.webContents.openDevTools();
 
-document.addEventListener('DOMContentLoaded', renderMainScreen);
+});

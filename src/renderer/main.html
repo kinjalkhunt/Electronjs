@@ -10,7 +10,44 @@
 </head>
 
 <body>
-  <div id="root"></div>
+  <div class="title-bar">
+    <div class="title-bar-left">
+      <img src="./assets/LOGO.jpg" alt="Logo" class="logo" />
+      <span class="login-title">Main Screen</span>
+    </div>
+    <div class="title-bar-right">
+      <button id="minimize-btn" class="title-bar-button">🗕</button>
+      <button id="maximize-btn" class="title-bar-button">🗖</button>
+      <button id="close-btn" class="title-bar-button">✕</button>
+    </div>
+  </div>
+  <nav class="menu-bar">
+    <ul>
+      <li class="dropdown">
+        <a href="#" id="menu-master">Master</a>
+        <ul class="dropdown-content" id="dropdown-master">
+          <!-- <li><a href="#" id="master-customer">Customer</a></li>
+          <li><a href="#" id="master-product">Product</a></li>
+          <li><a href="#" id="master-supplier">Supplier</a></li> -->
+        </ul>
+      </li>
+      <li class="dropdown">
+        <a href="#" id="menu-transaction">Transaction</a>
+        <ul class="dropdown-content" id="dropdown-transaction">
+          <li><a href="#" id="transaction-fabric-entry">Fabric Entry</a></li>
+        </ul>
+      </li>
+      <li><a href="#" id="menu-settings">View</a></li>
+      <li><a href="#" id="menu-logout">Logout</a></li>
+    </ul>
+  </nav>
+  <div class="container">
+    <div class="main-content">
+      <h1>Welcome, Swissfort!</h1>
+      <p>You have successfully logged in.</p>
+      <p>when i click menu item tha time open the drpdown and alt+that first letter then also open the dropdown</p>
+    </div>
+  </div>
   <script src="./js/mainScreen.js"></script>
 </body>
 
