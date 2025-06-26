@@ -9,35 +9,43 @@ document.addEventListener('DOMContentLoaded', () => {
   // Dropdown toggle for Master
   const masterMenu = document.getElementById('menu-master');
   const masterDropdown = document.getElementById('dropdown-master');
+  const transactionMenu = document.getElementById('menu-transaction');
+  const transactionDropdown = document.getElementById('dropdown-transaction');
+
   masterMenu.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation(); // Prevent document click from firing
+    // Close transaction dropdown if open
+    transactionDropdown.classList.remove('show');
+    // Toggle master dropdown
     masterDropdown.classList.toggle('show');
   });
   // Prevent dropdown click from closing itself
   masterDropdown.addEventListener('click', (e) => {
     e.stopPropagation();
   });
-  // Close dropdown if clicked outside Master or dropdown
-  document.addEventListener('click', (e) => {
-    if (!masterMenu.contains(e.target) && !masterDropdown.contains(e.target)) {
-      masterDropdown.classList.remove('show');
-    }
-  });
 
-  // Dropdown toggle for Transaction
-  const transactionMenu = document.getElementById('menu-transaction');
-  const transactionDropdown = document.getElementById('dropdown-transaction');
   transactionMenu.addEventListener('click', (e) => {
     e.preventDefault();
     e.stopPropagation();
+    // Close master dropdown if open
+    masterDropdown.classList.remove('show');
+    // Toggle transaction dropdown
     transactionDropdown.classList.toggle('show');
   });
   transactionDropdown.addEventListener('click', (e) => {
     e.stopPropagation();
   });
+
+  // Close dropdowns if clicked outside both menus and dropdowns
   document.addEventListener('click', (e) => {
-    if (!transactionMenu.contains(e.target) && !transactionDropdown.contains(e.target)) {
+    if (
+      !masterMenu.contains(e.target) &&
+      !masterDropdown.contains(e.target) &&
+      !transactionMenu.contains(e.target) &&
+      !transactionDropdown.contains(e.target)
+    ) {
+      masterDropdown.classList.remove('show');
       transactionDropdown.classList.remove('show');
     }
   });
@@ -50,6 +58,6 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Optionally, send fullscreen on load
   ipcRenderer.send('fullscreen-window');
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
 });

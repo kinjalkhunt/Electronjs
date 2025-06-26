@@ -28,7 +28,7 @@ function createWindow() {
 
   win.loadFile(path.join(__dirname, '../renderer/login.html'));
 
-  win.webContents.openDevTools();
+  // win.webContents.openDevTools();
 
   ipcMain.on('close-app', () => {
     win.close();
